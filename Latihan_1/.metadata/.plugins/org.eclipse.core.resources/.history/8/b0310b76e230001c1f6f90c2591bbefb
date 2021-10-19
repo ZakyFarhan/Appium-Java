@@ -1,0 +1,92 @@
+package appiumtests;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
+public class ToDoListTest {
+
+	static AppiumDriver<MobileElement> driver;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			openToDoList();
+			
+		}catch(Exception exp) {
+			System.out.println(exp.getCause());
+			System.out.println(exp.getMessage());
+			exp.printStackTrace();
+		}
+
+	}
+	
+public static void openToDoList() throws Exception {
+		
+		DesiredCapabilities cap = new DesiredCapabilities();
+		
+		cap.setCapability("deviceName", "M2102J20SG");
+		cap.setCapability("udid", "e9c3c4f2");
+		cap.setCapability("platformName", "Android");
+		cap.setCapability("platformVersion", "11 RKQ1 200826 002");
+		
+		cap.setCapability("appPackage", "com.splendapps.splendo");
+		cap.setCapability("appActivity", "com.splendapps.splendo.MainActivity");
+		
+		URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		
+		driver = new AppiumDriver<MobileElement>(url, cap);
+		
+		System.out.println("Application Started....");
+		
+		MobileElement btnCeklis = driver.findElement(By.id("com.splendapps.splendo:id/fabAddTask"));
+		btnCeklis.click();
+		Thread.sleep(2000);
+		
+		MobileElement btnEnter = driver.findElement(By.id("com.splendapps.splendo:id/edtTaskName"));
+		btnEnter.sendKeys("Testing");
+		
+		MobileElement btnCalender = driver.findElement(By.id("com.splendapps.splendo:id/btnSetD"));
+		btnCalender.click();
+		
+		MobileElement setTgl = driver.findElement(By.xpath("//*[@content-desc='04 October 2021']"));
+		MobileElement btnOkeTgl = driver.findElement(By.id("android:id/button1"));
+		MobileElement btnTime = driver.findElement(By.id("com.splendapps.splendo:id/btnSetT"));
+		MobileElement setTime = driver.findElement(By.xpath("//*[@content-desc='2']"));
+		MobileElement btnOkeTime = driver.findElement(By.id("android:id/button1"));
+		MobileElement btnOkeTaks = driver.findElement(By.id("com.splendapps.splendo:id/fabSaveTask"));
+		
+//		MobileElement enterTask = driver.findElement(By.id("com.splendapps.splendo:id/edtTaskName"));
+//		MobileElement btnCalender = driver.findElement(By.id("com.splendapps.splendo:id/btnSetD"));
+//		MobileElement tgl1 = driver.findElement(By.xpath("//*[@content-desc='04 October 2021']"));
+//		MobileElement btnOke = driver.findElement(By.id("android:id/button1"));
+		
+		
+		
+		
+		btnCalender.click();
+		setTgl.click();
+		btnOkeTgl.click();
+		btnTime.click();
+		setTime.click();
+		btnOkeTime.click();
+		btnOkeTaks.click();
+//		
+//		
+//		enterTask.sendKeys("testing");
+//
+//
+//		enterTask.sendKeys("test");
+//		btnCalender.click();
+//		tgl1.click();
+//		btnOke.click();
+//		EnterTask.sendKeys("Testing");
+		
+	}
+
+}
